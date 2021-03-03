@@ -28,7 +28,7 @@
         <el-input type="password" v-model="ruleForm.rePassword" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button @click="goToReg">注册</el-button>
+        <el-button @click="submitForm('ruleForm')">注册</el-button>
         <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>
     </el-form>
@@ -61,7 +61,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.axios.post("/api/login/in", this.ruleForm).then(res => {
+          this.axios.post("/api/user/add", this.ruleForm).then(res => {
             console.log(res);
           });
         } else {
@@ -72,7 +72,7 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
-    goToReg() {}
+
   }
 };
 </script>
@@ -81,11 +81,11 @@ export default {
 
 <style lang="sass" scoped>
 .container
-  display:flex,
-  align-items:center,
-  justify-content:center,
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: center
   .formContainer
-    width:50%,
-    min-width:300px,
-
+    width: 50%
+    min-width: 300px
 </style>
